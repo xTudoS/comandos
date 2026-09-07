@@ -1,0 +1,510 @@
+/* ============================================================================
+   Comando — Apple-like design tokens
+   Based on iOS / macOS system colors, SF Pro stack, system spring curves.
+   ============================================================================ */
+
+:root {
+  /* Surfaces (light) — pure neutrals */
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-alt: #fafafa;
+  --surface-hover: #f2f2f5;
+  --surface-elev: #ffffff;
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --surface-glass-strong: rgba(255, 255, 255, 0.88);
+
+  /* Floating-panel shell (Relatel/microdose-inspired) */
+  --canvas: #ffffff;          /* same as panel — unified flat surface */
+  --panel: #ffffff;           /* the floating white content panel */
+  --sidebar-bg: transparent;  /* sidebar sits directly on the canvas */
+  --sidebar-item-active: #ffffff;
+  --sidebar-item-hover: rgba(0, 0, 0, 0.04);
+
+  /* Borders — solid (matches prototype) */
+  --border: #e5e5ea;
+  --border-strong: #d1d1d6;
+  --border-faint: rgba(60, 60, 67, 0.06);
+
+  /* Text — iOS labels */
+  --text: #1d1d1f;
+  --text-2: #515154;
+  --text-3: #86868b;
+  --text-4: #aeaeb2;
+
+  /* Brand accent (Apple blue) — used for links, selection, focus, info */
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-pressed: #006edb;
+  --accent-soft: #e8f1fd;
+  --accent-glow: rgba(0, 113, 227, 0.32);
+
+  /* Primary action — graphite/black (Relatel "Create task" style) */
+  --primary: #1d1d1f;
+  --primary-hover: #000000;
+  --primary-pressed: #2c2c2e;
+  --on-primary: #ffffff;
+
+  /* System semantic */
+  --success: #30a46c;
+  --success-bg: #e7f7ee;
+  --warning: #d97706;
+  --warning-bg: #fef4e6;
+  --danger: #d93141;
+  --danger-bg: #fef2f2;
+  --danger-border: rgba(217, 49, 65, 0.32);
+  --amber: #b06a00;
+  --amber-bg: #fef4e6;
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+
+  --ceo-bg: #fff0ee;    --ceo-fg: #c9342a;
+  --delego-bg: #e8f5ed; --delego-fg: #1d7a45;
+  --pessoal-bg: #fef4e6; --pessoal-fg: #b06a00;
+
+  --core7-bar: #e5484d;  --core30-bar: #f76808; --core60-bar: #d99000;
+  --core90-bar: #30a46c; --micro-bar: #5856d6;  --backlog-bar: #8e8e93;
+  --hibernando-bar: #636366;
+
+  --followup-bg: #fef4e6; --followup-fg: #b06a00;
+
+  /* Pagamentos */
+  --pag-pendente: #d97706;
+  --pag-pago: #30a46c;
+  --pag-atrasado: #d93141;
+
+  /* Notas (por tipo) */
+  --nota-playbook: #5856d6;
+  --nota-credencial: #d93141;
+  --nota-contato: #30a46c;
+  --nota-decisao: #0071e3;
+  --nota-referencia: #8e8e93;
+
+  /* Projetos (categoria) — pílulas */
+  --proj-empresa-bg: #eef2ff; --proj-empresa-bd: #c7d2fe; --proj-empresa-fg: #4338ca;
+  --proj-produto-bg: #f0fdf4; --proj-produto-bd: #bbf7d0; --proj-produto-fg: #15803d;
+  --proj-geral-bg:   #fefce8; --proj-geral-bd:   #fde68a; --proj-geral-fg:   #854d0e;
+  --proj-pessoal-bg: #fdf2f8; --proj-pessoal-bd: #fbcfe8; --proj-pessoal-fg: #9d174d;
+
+  /* Metas & barras de progresso (gradientes) */
+  --meta-from: #0a84ff;         --meta-to: #5e9eff;
+  --meta-vencida-from: #ff453a; --meta-vencida-to: #ff6961;
+  --progresso-from: #34c759;    --progresso-to: #30d158;
+  --progresso-full-from: #007aff; --progresso-full-to: #0a84ff;
+
+  /* Radii — iOS rounded corners + larger panel/card radii (Relatel).
+     ESCALA FECHADA: nenhum outro valor de border-radius é permitido
+     (`50%` para círculos continua válido). --radius-xs existe para elementos
+     minúsculos — barras de spark, progresso, checkbox quadrado — onde 6px já
+     arredonda demais. */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 22px;        /* floating panel */
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 0 0 0.5px rgba(0, 0, 0, 0.04), 0 1px 1.5px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 0 0 0.5px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 24px 48px -12px rgba(0, 0, 0, 0.24), 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-focus: 0 0 0 4px var(--accent-glow);
+
+  /* Soft diffuse shadows for floating panel & cards (Relatel) */
+  --shadow-panel: 0 1px 1px rgba(0,0,0,0.02), 0 8px 24px -10px rgba(0,0,0,0.10), 0 2px 8px -4px rgba(0,0,0,0.06);
+  --shadow-card: 0 0 0 1px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px -6px rgba(0,0,0,0.08);
+  --shadow-card-hover: 0 0 0 1px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.05), 0 10px 28px -8px rgba(0,0,0,0.14);
+
+  /* Typography */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", Menlo, Monaco, "Cascadia Code", Consolas, monospace;
+
+  /* Escala tipográfica — ESCALA FECHADA. Nenhum outro font-size é permitido;
+     `pnpm lint:tokens` reprova valores fora daqui.
+     Os degraus foram derivados do uso real, não inventados: 13px é o mais
+     comum (120 usos), 26px é o tamanho de título de página (10 usos) e 17px o
+     de empty-state/corpo grande (9 usos) — ambos eram tokens de fato que nunca
+     tinham sido nomeados. Ver design-system/MASTER.md. */
+  --fs-9:  9px;   /* só label uppercase */
+  --fs-10: 10px;  /* só label uppercase */
+  --fs-11: 11px;
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;  /* corpo */
+  --fs-15: 15px;
+  --fs-16: 16px;
+  --fs-17: 17px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-26: 26px;  /* título de página */
+  --fs-32: 32px;
+  --fs-48: 48px;  /* display, mobile */
+  --fs-64: 64px;  /* display — placar do herói em /vida */
+
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  --lh-tight:   1.2;
+  --lh-snug:    1.3;
+  --lh-base:    1.45;
+  --lh-relaxed: 1.55;
+
+  --ls-uppercase:       0.05em;
+  --ls-uppercase-tight: 0.04em;
+  --ls-h2:              -0.02em;
+  --ls-h3:              -0.015em;
+  --ls-h-tab:           -0.01em;
+  --ls-body:            -0.005em;
+
+  /* Espaçamento — ritmo par. Valores ímpares (3,5,7,9,11,13) são proibidos
+     em padding/margin/gap; 1px só é legítimo em hairline border/height. */
+  --sp-1:  4px;
+  --sp-2:  6px;
+  --sp-3:  8px;
+  --sp-4:  10px;
+  --sp-5:  12px;
+  --sp-6:  14px;
+  --sp-7:  16px;
+  --sp-8:  18px;
+  --sp-9:  20px;
+  --sp-10: 22px;
+  --sp-11: 24px;
+
+  /* Motion — Apple system spring + standardized durations */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);     /* iOS standard spring */
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);     /* macOS emphasized */
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --dur-instant: 80ms;
+  --dur-fast: 150ms;
+  --dur-medium: 200ms;
+  --dur-base: 240ms;
+  --dur-slow: 360ms;
+  --dur-slower: 500ms;
+
+  /* Z-index scale */
+  --z-content: 0;
+  --z-sticky: 10;
+  --z-overlay: 40;
+  --z-pop: 60;
+  --z-modal: 100;
+  --z-toast: 1000;
+
+  /* --------------------------------------------------------------------------
+     Tokens que eram REFERENCIADOS mas nunca declarados em lugar nenhum.
+     Definidos aqui com exatamente o valor que já vigorava, para não mudar nada
+     visualmente — exceto --surface-2, ver abaixo.
+     -------------------------------------------------------------------------- */
+
+  /* Texto/ícone sobre QUALQUER preenchimento saturado — accent, success,
+     danger, avatar colorido. Use este, não `#fff` cru: era o literal mais
+     repetido do projeto (44 ocorrências em 30 arquivos). Cuidado para não
+     confundir com --surface (fundo branco de card): os dois são #ffffff hoje,
+     mas significam coisas opostas. */
+  --accent-fg: #ffffff;
+
+  /* Anéis de foco/seleção em accent. Estavam escritos como rgba(0,113,227,α)
+     cru em 14 lugares — mesmo valor de --accent com alpha. */
+  --accent-ring: rgba(0, 113, 227, 0.12);          /* foco leve (inputs) */
+  --accent-ring-strong: rgba(0, 113, 227, 0.18);   /* foco/seleção */
+
+  /* Variações alpha de --ceo-fg (#c9342a), idem. */
+  --ceo-soft: rgba(201, 52, 42, 0.08);
+  --ceo-border: rgba(201, 52, 42, 0.3);
+
+  /* Popover da busca global. Era `var(--shadow-pop, var(--shadow-card))`. */
+  --shadow-pop: var(--shadow-card);
+
+  /* ⚠️ CORREÇÃO DE BUG (muda o visual): `--surface-2` nunca foi declarado, nem
+     aqui nem no tokens.css antigo. Os 5 arquivos de `quadros/` que fazem
+     `background: var(--surface-2)` estavam renderizando com fundo TRANSPARENTE
+     (valor inválido no tempo de computação). O nome pretendido é a superfície
+     secundária. */
+  --surface-2: var(--surface-alt);
+}
+
+/* ============================================================================
+   Base
+   ============================================================================ */
+
+html, body { height: 100%; }
+html { color-scheme: light; }  /* app light-only: dark mode foi removido */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+}
+
+/* All numerics use tabular nums to prevent jitter */
+[data-numeric], .num, .tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "kern" 1;
+}
+
+/* Tighten headings (Apple display font behaviour) */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.022em;
+  font-weight: 600;
+}
+
+/* ============================================================================
+   Apple focus ring — replaces ugly browser default
+   ============================================================================ */
+
+:focus { outline: none; }
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--radius-sm);
+  transition: box-shadow var(--dur-fast) var(--ease-spring);
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  box-shadow: var(--shadow-focus);
+}
+
+/* ============================================================================
+   Form elements (per prototype)
+   ============================================================================ */
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+input, textarea, select {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-spring),
+              box-shadow var(--dur-fast) var(--ease-spring);
+  width: 100%;
+}
+
+input:focus, input:focus-visible,
+textarea:focus, textarea:focus-visible,
+select:focus, select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ============================================================================
+   Buttons — .btn classes (per prototype)
+   ============================================================================ */
+
+.btn {
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  transition: background var(--dur-fast) var(--ease-spring),
+              border-color var(--dur-fast) var(--ease-spring),
+              transform var(--dur-instant) var(--ease-spring);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: inherit;
+  line-height: 1.2;
+}
+.btn:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: scale(0.97);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.btn.primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+.btn.primary:active:not(:disabled) {
+  background: var(--primary-pressed);
+}
+
+.btn.ghost {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.btn.ghost:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.btn.danger {
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  background: var(--surface);
+}
+.btn.danger:hover:not(:disabled) {
+  background: var(--danger-bg);
+}
+
+.btn.warning {
+  color: var(--warning);
+  border: 1px solid var(--warning);
+  background: var(--surface);
+}
+.btn.warning:hover:not(:disabled) {
+  background: var(--warning-bg);
+}
+
+.btn.icon {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  justify-content: center;
+  color: var(--text-2);
+}
+.btn.icon:hover:not(:disabled) {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+/* ============================================================================
+   Press feedback — universal scale-down on active for tappable surfaces
+   ============================================================================ */
+
+button,
+[role="button"],
+.tap,
+a[href] {
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    background-color var(--dur-fast) var(--ease-spring),
+    color var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-spring),
+    border-color var(--dur-fast) var(--ease-spring),
+    opacity var(--dur-fast) var(--ease-spring);
+}
+
+button:active:not(:disabled),
+[role="button"]:active:not([aria-disabled="true"]),
+.tap:active {
+  transform: scale(0.97);
+}
+
+/* Cards & list rows scale slightly less aggressively */
+.card:active {
+  transform: scale(0.995);
+}
+
+/* ============================================================================
+   Reduced motion respect
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  button:active,
+  [role="button"]:active,
+  .card:active,
+  .tap:active {
+    transform: none !important;
+  }
+}
+
+/* ============================================================================
+   Scrollbar — subtle, system-like
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 120, 128, 0.32);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 120, 128, 0.5);
+  background-clip: padding-box;
+}
+
+/* ============================================================================
+   Selection
+   ============================================================================ */
+
+::selection {
+  background: var(--accent-glow);
+  color: var(--text);
+}
+
+/* ============================================================================
+   View Transitions API — page-level cross-fade
+   (Nuxt experimental.viewTransition triggers document.startViewTransition)
+   ============================================================================ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--dur-base);
+  animation-timing-function: var(--ease-spring);
+}
+
+::view-transition-old(root) {
+  animation-name: ct-fade-out;
+}
+::view-transition-new(root) {
+  animation-name: ct-fade-in;
+}
+
+@keyframes ct-fade-out {
+  to { opacity: 0; }
+}
+@keyframes ct-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================================
+   Empty states — gentle fade-up
+   ============================================================================ */
+
+.empty-state {
+  animation: fade-up var(--dur-slow) var(--ease-spring);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

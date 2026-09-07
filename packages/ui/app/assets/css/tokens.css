@@ -1,0 +1,113 @@
+/* ============================================================================
+   Comando — CAMADA DE COMPATIBILIDADE (legado, em depreciação)
+
+   A fonte de verdade dos tokens é `main.css`. Este arquivo existe apenas para
+   manter funcionando os ~34 componentes que ainda usam o prefixo `--color-*`
+   do design-spec §4 original.
+
+   ⚠️  NÃO ADICIONE TOKENS NOVOS AQUI. Todo token novo nasce em `main.css`.
+   ⚠️  Ao editar um componente que usa `--color-*`, migre-o para o nome curto
+       equivalente (`--surface`, `--text`, …) e apague o alias quando o último
+       consumidor sumir. Rode `pnpm lint:tokens` para ver quem ainda usa.
+
+   Histórico: este arquivo declarava `--radius*`, `--shadow-*`, `--dur-*`,
+   `--easing-*` e `--font-mono` em `:root`, colidindo com `main.css`. Como
+   `main.css` era carregado depois, os valores daqui nunca valiam — o
+   `design-spec §4.6` prescrevia `--dur-base: 150ms` mas o runtime usava 240ms.
+   O bloco `@media (prefers-reduced-motion)` daqui era morto pelo mesmo motivo
+   (o de `main.css` é o que funciona). Ambos foram removidos.
+   ============================================================================ */
+
+:root {
+  /* === SUPERFÍCIES === */
+  --color-bg:              var(--bg);
+  --color-surface:         var(--surface);
+  --color-surface-alt:     var(--surface-alt);
+  --color-surface-hover:   var(--surface-hover);
+
+  /* === BORDAS === */
+  --color-border:          var(--border);
+  --color-border-strong:   var(--border-strong);
+
+  /* === TEXTO === */
+  --color-text:            var(--text);
+  --color-text-2:          var(--text-2);
+  --color-text-3:          var(--text-3);
+  --color-text-4:          var(--text-4);
+
+  /* === BRAND / ESTADOS === */
+  --color-accent:          var(--accent);
+  --color-accent-hover:    var(--accent-hover);
+  --color-accent-soft:     var(--accent-soft);
+
+  --color-success:         var(--success);
+  --color-warning:         var(--warning);
+  --color-amber:           var(--amber);
+  --color-amber-bg:        var(--amber-bg);
+  --color-danger:          var(--danger);
+
+  /* === ENTIDADES — TIPO DE TAREFA === */
+  --color-ceo-bg:          var(--ceo-bg);
+  --color-ceo-fg:          var(--ceo-fg);
+  --color-delego-bg:       var(--delego-bg);
+  --color-delego-fg:       var(--delego-fg);
+  --color-pessoal-bg:      var(--pessoal-bg);
+  --color-pessoal-fg:      var(--pessoal-fg);
+
+  /* === HORIZONTES (barra lateral) === */
+  --color-h-core7:         var(--core7-bar);
+  --color-h-core30:        var(--core30-bar);
+  --color-h-core60:        var(--core60-bar);
+  --color-h-core90:        var(--core90-bar);
+  --color-h-micro:         var(--micro-bar);
+  --color-h-backlog:       var(--backlog-bar);
+  --color-h-hibernando:    var(--hibernando-bar);
+
+  /* === FOLLOWUP === */
+  --color-followup-bg:     var(--followup-bg);
+  --color-followup-fg:     var(--followup-fg);
+
+  /* === PAGAMENTOS (status) === */
+  --color-pag-pendente:    var(--pag-pendente);
+  --color-pag-pago:        var(--pag-pago);
+  --color-pag-atrasado:    var(--pag-atrasado);
+
+  /* === NOTAS (tipo) === */
+  --color-nota-playbook:   var(--nota-playbook);
+  --color-nota-credencial: var(--nota-credencial);
+  --color-nota-contato:    var(--nota-contato);
+  --color-nota-decisao:    var(--nota-decisao);
+  --color-nota-referencia: var(--nota-referencia);
+
+  /* === PROJETOS (categoria) — pílulas === */
+  --color-proj-empresa-bg: var(--proj-empresa-bg);
+  --color-proj-empresa-bd: var(--proj-empresa-bd);
+  --color-proj-empresa-fg: var(--proj-empresa-fg);
+  --color-proj-produto-bg: var(--proj-produto-bg);
+  --color-proj-produto-bd: var(--proj-produto-bd);
+  --color-proj-produto-fg: var(--proj-produto-fg);
+  --color-proj-geral-bg:   var(--proj-geral-bg);
+  --color-proj-geral-bd:   var(--proj-geral-bd);
+  --color-proj-geral-fg:   var(--proj-geral-fg);
+  --color-proj-pessoal-bg: var(--proj-pessoal-bg);
+  --color-proj-pessoal-bd: var(--proj-pessoal-bd);
+  --color-proj-pessoal-fg: var(--proj-pessoal-fg);
+
+  /* === METAS / PROGRESSO (gradientes) === */
+  --color-meta-from:           var(--meta-from);
+  --color-meta-to:             var(--meta-to);
+  --color-meta-vencida-from:   var(--meta-vencida-from);
+  --color-meta-vencida-to:     var(--meta-vencida-to);
+  --color-progresso-from:      var(--progresso-from);
+  --color-progresso-to:        var(--progresso-to);
+  --color-progresso-full-from: var(--progresso-full-from);
+  --color-progresso-full-to:   var(--progresso-full-to);
+
+  /* === TIPOGRAFIA === */
+  --font-sans: var(--font);
+
+  /* === MOTION === */
+  --easing-default:  var(--ease-spring);
+  --easing-ease-out: var(--ease-out);
+  --easing-ease-in:  var(--ease-in);
+}

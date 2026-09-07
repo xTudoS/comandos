@@ -1,0 +1,42 @@
+# deps
+node_modules
+.pnpm-store
+
+# nuxt
+.nuxt
+.output
+.data
+dist
+
+# env
+.env
+.env.*
+!.env.example
+# secrets locais do wrangler — ficaram versionados por não estarem cobertos
+# pelo padrão .env* acima
+.dev.vars
+.dev.vars.*
+
+# cloudflare
+.wrangler
+
+# drizzle
+drizzle/meta/_journal.json.bak
+
+# test artifacts
+coverage
+playwright-report
+test-results
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode
+.idea
+
+# claude code tooling (per-project skills, agents, lock)
+.claude/
+.agents/
+skills-lock.json

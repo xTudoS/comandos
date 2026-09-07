@@ -1,0 +1,22 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "comando-sync",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-18",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  // 1 instância por usuário (getByName(userId)); relay de WebSocket com
+  // Hibernation API, sem armazenamento.
+  "durable_objects": {
+    "bindings": [
+      { "name": "SYNC_ROOM", "class_name": "SyncRoom" }
+    ]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["SyncRoom"] }
+  ]
+  // Segredo (mesmo valor no worker do Nuxt):
+  //   wrangler secret put SYNC_TOKEN_SECRET --config workers/sync/wrangler.jsonc
+}

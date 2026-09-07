@@ -1,0 +1,1 @@
+ALTER TABLE "booking_links" ADD COLUMN "availability" jsonb;

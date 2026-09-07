@@ -1,0 +1,2 @@
+ALTER TABLE "goals" ADD COLUMN "category" text DEFAULT 'general' NOT NULL;
+UPDATE "goals" SET "category" = 'personal', "company_id" = NULL WHERE "company_id" IN (SELECT "id" FROM "companies" WHERE "name" ILIKE 'Pessoal');

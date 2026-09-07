@@ -1,0 +1,49 @@
+/* ============================================================================
+   Comando — Reset minimal (per spec §3-4)
+   Coexists with main.css. Only adds rules that the new design system depends
+   on; does NOT touch font-size of html/body (main.css already sets that).
+   ============================================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* spec §15 anti-pattern #10: prevent iOS zoom on input focus.
+   Mobile inputs must be ≥16px. */
+@media (max-width: 780px) {
+  input, textarea, select {
+    font-size: 16px;
+  }
+}

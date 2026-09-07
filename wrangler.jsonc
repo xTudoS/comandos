@@ -1,0 +1,69 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "comandos",
+	"compatibility_date": "2026-06-18",
+	"observability": {
+		"enabled": true,
+	},
+	"workers_dev": true,
+	"main": "./.output/server/index.mjs",
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./.output/public/",
+		"run_worker_first": ["/*", "!/assets/*", "!/_nuxt/*"]
+	},
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"routes": [
+		{
+			"zone_name": "comandos.app",
+			"custom_domain": true,
+			"pattern": "comandos.app"
+		}
+	],
+	// ATENÇÃO ao prefixo: o que é lido via useRuntimeConfig() só chega ao app
+	// com prefixo NUXT_ (o Nitro monta `NUXT_` + SNAKE_CASE da chave). Vars sem
+	// prefixo aqui são ignoradas pelo runtimeConfig — foi assim que SITE_URL,
+	// RESEND_FROM_EMAIL e ADMIN_BOOTSTRAP_EMAIL ficaram inertes e o app passou a
+	// depender dos defaults hardcoded do nuxt.config.ts.
+	// As S3_* são exceção: server/utils/storage.ts lê process.env direto.
+	"vars": {
+		"BETTER_AUTH_URL": "/",
+		"NUXT_PUBLIC_SITE_URL": "https://comandos.app",
+		"NUXT_RESEND_FROM_EMAIL": "comando@updates.brunnogalvao.com.br",
+		"NUXT_ADMIN_BOOTSTRAP_EMAIL": "brunno@galvao.co",
+		"S3_ENDPOINT": "https://t3.storageapi.dev",
+		"S3_REGION": "auto",
+		"NUXT_PUBLIC_SYNC_URL": "wss://comando-sync.gitlab-admin-company.workers.dev/ws"
+	},
+	"placement": {
+		"region": "gcp:us-west2",
+	},
+	"hyperdrive": [
+		{
+			"binding": "HYPERDRIVE",
+			"id": "0b7c77254b6049e9a372fa4c375290d4",
+			"localConnectionString": "postgres://postgres:postgres@localhost:5432/comando_dev",
+		},
+	],
+	"kv_namespaces": [
+		{
+			"binding": "HQ_BG_CACHE",
+			"id": "ea442dd71b204fca9f8ad8854a00280b"
+		}
+	],
+	// Tempo real (Fase 2): RPC para o worker comando-sync disparar broadcast.
+	// O segredo do token vai como secret (mesmo valor nos dois workers):
+	//   wrangler secret put SYNC_TOKEN_SECRET
+	"services": [
+		{
+			"binding": "SYNC",
+			"service": "comando-sync"
+		}
+	],
+	//   "env": {
+	//     "prod": {
+	//     },
+	//   },
+}

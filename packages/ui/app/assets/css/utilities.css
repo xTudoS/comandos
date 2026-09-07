@@ -1,0 +1,51 @@
+/* ============================================================================
+   Comando — Utility classes (per spec §4.2)
+   ============================================================================ */
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.tabular,
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "kern" 1;
+}
+
+.uppercase-label {
+  text-transform: uppercase;
+  font-size: var(--fs-10);
+  letter-spacing: var(--ls-uppercase);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-3);
+}
+
+.frosted {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.frosted-bg {
+  background: rgba(245, 245, 247, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
